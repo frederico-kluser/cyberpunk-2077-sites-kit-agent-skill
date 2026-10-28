@@ -1,8 +1,8 @@
 # NETKIT/WEB — sites no padrão do mod NetSites
 
 [![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-5ef6ff?style=flat-square)](LICENSE)
-[![Versão](https://img.shields.io/badge/kit-1.0.0-ff6159?style=flat-square)](CHANGELOG.md)
-[![Testes](https://img.shields.io/badge/testes-44%20verdes-5ef6ff?style=flat-square)](#testes)
+[![Versão](https://img.shields.io/badge/kit-1.1.0-ff6159?style=flat-square)](CHANGELOG.md)
+[![Testes](https://img.shields.io/badge/testes-48%20verdes-5ef6ff?style=flat-square)](#testes)
 [![Node](https://img.shields.io/badge/node-%E2%89%A520-ff6159?style=flat-square)](package.json)
 [![Commits](https://img.shields.io/badge/commits-convencionais-5ef6ff?style=flat-square)](CONTRIBUTING.md)
 [![Agent Skill](https://img.shields.io/badge/agent--skill-global-ff6159?style=flat-square)](#instalar-como-skill-global)
@@ -52,6 +52,33 @@ python3 scripts/netkit.py preview ~/site/netkit/site.json
 <netsites src="netkit/site.json"></netsites>
 <script src="netkit/netkit-web.standalone.js" defer></script>
 ```
+
+
+## Prints
+
+Capturas reais, geradas com browser headless a partir das páginas de `docs/prints/src/` — nenhuma foi
+desenhada à mão e nenhuma usa conteúdo da CDPR.
+
+[![Os cinco temas](docs/prints/01-temas.png)](docs/prints/01-temas.png)
+
+[![Notícia no tema tabloid](docs/prints/02-noticia-tabloid.png)](docs/prints/02-noticia-tabloid.png)
+
+[![Loja no tema street](docs/prints/03-loja-street.png)](docs/prints/03-loja-street.png)
+
+[![Portfólio no tema neon](docs/prints/04-portfolio-neon.png)](docs/prints/04-portfolio-neon.png)
+
+[![Catálogo de componentes](docs/prints/05-componentes.png)](docs/prints/05-componentes.png)
+
+[![A notícia em 390 px](docs/prints/06-noticia-mobile.png)](docs/prints/06-noticia-mobile.png)
+
+[![O caminho sem React: standalone + JSON](docs/prints/07-standalone-json.png)](docs/prints/07-standalone-json.png)
+
+```bash
+npm run prints          # refaz as capturas (Chrome/Edge headless)
+npm run prints:check    # confere que todas existem
+```
+
+Detalhe de cada imagem, arte e licenças das fontes: [`docs/prints/README.md`](docs/prints/README.md).
 
 ## O que existe
 
@@ -106,7 +133,8 @@ assets/standalone/            netkit-web.standalone.js (CSS embutida)
 scripts/netkit.py             a CLI
 scripts/link-skill-global.sh  registo global por symlink
 references/                   design-system · componentes · formato-site · proibido · injecao · exemplos · checklist
-tests/                        44 testes (14 node + 30 python), sem dependências
+tests/                        48 testes (15 node + 33 python), sem dependências
+docs/prints/                  capturas reais + gerador (scripts/prints.py)
 ```
 
 ## Testes

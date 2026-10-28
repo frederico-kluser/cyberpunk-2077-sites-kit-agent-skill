@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>print · standalone · netsites-site/1</title>
+    <!-- Este print é o caminho SEM React: um <script> e um JSON inline.
+         O netkit-web.standalone.js desenha o site no browser; a CSS vem do kit. -->
+    <link rel="stylesheet" href="../../../assets/netkit-web/netkit-web.css" />
+    <link rel="stylesheet" href="_print.css" />
+    <script src="../../../assets/standalone/netkit-web.standalone.js" defer></script>
+  </head>
+  <body>
+    <netsites>
+      {
+        "schema": "netsites-site/1",
+        "id": "relatorio",
+        "title": "Relatório Anual",
+        "domain": "corpo.web",
+        "lang": "pt-BR",
+        "theme": "corpo",
+        "home": "index",
+        "images": { "foto": { "url": "art/relatorio.jpg" } },
+        "pages": [
+          {
+            "id": "index",
+            "address": "NETdir://corpo.web",
+            "title": "Relatório",
+            "root": {
+              "type": "page",
+              "props": { "background": "#0a0a0a", "padding": [120, 200, 120, 160], "gap": 40 },
+              "children": [
+                {
+                  "type": "row",
+                  "props": { "gap": 36, "valign": "center" },
+                  "children": [
+                    { "type": "text", "props": { "text": "CORPO", "size": 44, "upper": true, "weight": "semibold", "color": "#ffffff" } },
+                    { "type": "spacer", "props": { "grow": 1 } },
+                    { "type": "text", "props": { "text": "NETdir://corpo.web", "size": 36, "color": "#8c8c8c" } }
+                  ]
+                },
+                { "type": "rect", "props": { "height": 3, "color": "#3a1412" } },
+                {
+                  "type": "row",
+                  "props": { "gap": 40, "valign": "center" },
+                  "children": [
+                    { "type": "rect", "props": { "width": 14, "height": 64, "color": "#e0312b" } },
+                    { "type": "text", "props": { "text": "RELATÓRIO ANUAL", "size": 72, "upper": true, "weight": "bold", "color": "#ffffff" } }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "text": "Três empresas, uma janela de sete horas. O que a cidade perdeu quando a rede parou.",
+                    "size": 46,
+                    "wrap": 2400,
+                    "lineHeight": 1.25
+                  }
+                },
+                { "type": "rect", "props": { "height": 4, "color": "#3a1412" } },
+                { "type": "image", "props": { "image": "foto", "height": 560 } },
+                {
+                  "type": "row",
+                  "props": { "gap": 32 },
+                  "children": [
+                    {
+                      "type": "column",
+                      "props": { "background": "#161616", "padding": [36, 32, 36, 36], "gap": 18, "grow": 1 },
+                      "children": [
+                        { "type": "text", "props": { "text": "01 · Queda", "size": 34, "upper": true, "weight": "semibold", "color": "#e0312b" } },
+                        { "type": "text", "props": { "text": "23h17. A rede piscou uma vez.", "size": 42, "wrap": 900 } }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "props": { "background": "#161616", "padding": [36, 32, 36, 36], "gap": 18, "grow": 1 },
+                      "children": [
+                        { "type": "text", "props": { "text": "02 · Janela", "size": 34, "upper": true, "weight": "semibold", "color": "#e0312b" } },
+                        { "type": "text", "props": { "text": "Sete horas sem sinal nenhum.", "size": 42, "wrap": 900 } }
+                      ]
+                    },
+                    {
+                      "type": "column",
+                      "props": { "background": "#161616", "padding": [36, 32, 36, 36], "gap": 18, "grow": 1 },
+                      "children": [
+                        { "type": "text", "props": { "text": "03 · Depois", "size": 34, "upper": true, "weight": "semibold", "color": "#e0312b" } },
+                        { "type": "text", "props": { "text": "Os preços subiram 40%.", "size": 42, "wrap": 900 } }
+                      ]
+                    }
+                  ]
+                },
+                { "type": "rect", "props": { "height": 3, "color": "#3a1412" } },
+                {
+                  "type": "row",
+                  "props": { "gap": 36, "valign": "center" },
+                  "children": [
+                    { "type": "text", "props": { "text": "© 2077 Corpo", "size": 36, "color": "#8c8c8c" } },
+                    { "type": "spacer", "props": { "grow": 1 } },
+                    { "type": "text", "props": { "text": "VOLTAR", "size": 36, "upper": true, "weight": "semibold", "color": "#ff6159", "link": "index" } }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "text": "NETKIT/WEB · desenhado pelo netkit-web.standalone.js · sem React, sem build",
+                    "size": 38,
+                    "upper": true,
+                    "color": "#8c8c8c"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    </netsites>
+  </body>
+</html>

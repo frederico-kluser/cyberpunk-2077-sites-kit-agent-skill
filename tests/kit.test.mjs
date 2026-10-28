@@ -82,7 +82,7 @@ await import(pathToFileURL(join(ROOT, "assets/standalone/netkit-web.standalone.j
 
 test("standalone: expõe a API e a versão", () => {
   assert.ok(globalThis.NetKit, "NetKit não foi criado")
-  assert.equal(globalThis.NetKit.version, "1.0.0")
+  assert.equal(globalThis.NetKit.version, "1.1.0")
   assert.deepEqual(globalThis.NetKit.themes, ["net", "corpo", "street", "tabloid", "neon"])
   assert.match(globalThis.NetKit.css, /--nk-accent/)
 })
@@ -162,6 +162,14 @@ test("standalone: o código fora do bloco de CSS não tem cores literais", () =>
   assert.equal((withoutCss.match(/#[0-9a-fA-F]{6}/g) || []).length, 0, "as cores vivem só no CSS")
 })
 
+test("standalone: limpa o host antes de desenhar (JSON inline no <netsites>)", () => {
+  const host = document.createElement("div")
+  host.appendChild(document.createTextNode('{"schema":"netsites-site/1"}'))
+  globalThis.NetKit.render(SPEC, host)
+  assert.equal(host.children.length, 1, "só o site do kit fica no host")
+  assert.equal(host.children[0].className.startsWith("nk-site"), true)
+})
+
 test("standalone: mount() vai buscar o JSON", async () => {
   const host = document.createElement("div")
   const api = await globalThis.NetKit.mount("/site.json", host)
@@ -185,7 +193,7 @@ test("react: exporta tudo o que a documentação promete", () => {
     "THEME_NAMES", "VERSION", "pagesOf", "siteMeta", "textOf", "u", "pageHref", "useNav",
   ]
   for (const name of expected) assert.ok(kit[name] !== undefined, `falta exportar ${name}`)
-  assert.equal(kit.VERSION, "1.0.0")
+  assert.equal(kit.VERSION, "1.1.0")
 })
 
 test("react: componentes não têm cores literais (só variáveis do CSS)", () => {
@@ -220,6 +228,10 @@ test("react: Text, Column, Row e ligações", () => {
   const col = renderTree(kit.Column({ gap: 40, padding: [0, 0, 0, 24], children: "x" }))
   assert.equal(col.props.style["--nk-gap"], "calc(var(--nk-u) * 40)")
   assert.equal(col.props.style["--nk-pad"], "calc(var(--nk-u) * 0) calc(var(--nk-u) * 0) calc(var(--nk-u) * 0) calc(var(--nk-u) * 24)")
+
+  const bordered = renderTree(kit.Column({ border: { color: "var(--nk-line)", width: 3 }, children: "x" }))
+  assert.equal(bordered.props.style.border, "calc(var(--nk-u) * 3) solid var(--nk-line)")
+  assert.equal(bordered.props.style["--nk-border"], undefined, "borda não é var: herdaria para os filhos")
 
   const row = renderTree(kit.Row({ stack: true, link: "index", hover: "var(--nk-line)", children: "x" }))
   assert.equal(row.tag, "a")

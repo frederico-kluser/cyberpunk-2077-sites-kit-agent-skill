@@ -12,6 +12,25 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-10-28
+
+### Added
+
+- **Prints reais do kit** em `docs/prints/` (cinco temas, notícia, loja, portfólio, catálogo, telemóvel e o
+  caminho JSON sem React) e a capa `og.png`.
+- **Gerador das capturas** `scripts/prints.py`: serve o repositório, fotografa com Chrome/Edge headless,
+  gera a arte abstrata (Pillow, semente fixa) e descarrega as fontes OFL; `--check` valida a entrega.
+- Testes das capturas (origem e ficheiros) e passos `npm run prints` / `prints:check`.
+
+### Fixed
+
+- **Hero**: o texto ficava atrás da imagem (a imagem é `position: relative` e o corpo era estático) e o véu
+  tinha altura 0. Agora o corpo tem `z-index` e o véu cobre a área toda.
+- **Navegação**: `NavBar` não tinha `gap` — os links apareciam colados (`--nk-gap` era definida mas ignorada).
+- **Bordas**: `--nk-border` herdava para os descendentes e desenhava caixas fantasma dentro de cartões e
+  botões; a borda passou a ser inline (`style.border`) e a variável desapareceu da CSS.
+- **Button**: esticava na largura toda dentro de colunas (Hero); agora alinha a `flex-start`.
+
 ## [1.0.0] — 2026-10-28
 
 ### Added
@@ -29,5 +48,6 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 - **44 testes** sem dependências (14 node + 30 python) e CI com `build` agregador, CodeQL-ready e
   OpenSSF Scorecard.
 
-[Unreleased]: https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill/releases/tag/v1.1.0
 [1.0.0]: https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill/releases/tag/v1.0.0

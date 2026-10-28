@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>print · notícia · tema tabloid</title>
+    <!--
+      Captura de documentação: usa SÓ as classes que os componentes do netkit-web emitem
+      (Header, Hero, Section, Card, Quote, Footer) e o netkit-web.css como folha de estilo.
+      As imagens são arte abstrata gerada por scripts/prints.py (nenhum asset da CDPR).
+    -->
+    <link rel="stylesheet" href="../../../assets/netkit-web/netkit-web.css" />
+    <link rel="stylesheet" href="_print.css" />
+  </head>
+  <body>
+    <div class="nk-site nk-theme-tabloid">
+      <main class="nk-page">
+        <div
+          class="nk-page-inner"
+          style="padding: calc(var(--nk-u) * 120) calc(var(--nk-u) * 200) calc(var(--nk-u) * 120) calc(var(--nk-u) * 160)"
+        >
+          <!-- Header -->
+          <header class="nk-header">
+            <div class="nk-header-row">
+              <div class="nk-header-titles">
+                <span
+                  class="nk-text"
+                  style="--nk-size:110;--nk-font:var(--nk-heading-font);--nk-weight:var(--nk-heading-weight);--nk-color:var(--nk-heading-color);--nk-transform:var(--nk-heading-transform)"
+                  >NOTÍCIAS</span
+                >
+                <span class="nk-text" style="--nk-size:44;--nk-color:var(--nk-muted)">A cidade, sem filtro</span>
+              </div>
+            </div>
+            <nav class="nk-nav" style="--nk-gap: calc(var(--nk-u) * 64)" aria-label="Navegação do site">
+              <a class="nk-nav-item nk-link" href="#">
+                <span
+                  class="nk-text"
+                  style="--nk-size:44;--nk-weight:var(--nk-w-semibold);--nk-transform:uppercase;--nk-color:var(--nk-accent)"
+                  >INÍCIO</span
+                >
+                <span class="nk-nav-mark" style="--nk-mark: var(--nk-accent)"></span>
+              </a>
+              <a class="nk-nav-item nk-link" href="#">
+                <span class="nk-text" style="--nk-size:44;--nk-weight:var(--nk-w-semibold);--nk-transform:uppercase"
+                  >MATÉRIA</span
+                >
+                <span class="nk-nav-mark"></span>
+              </a>
+              <a class="nk-nav-item nk-link" href="#">
+                <span class="nk-text" style="--nk-size:44;--nk-weight:var(--nk-w-semibold);--nk-transform:uppercase"
+                  >SOBRE</span
+                >
+                <span class="nk-nav-mark"></span>
+              </a>
+              <a class="nk-nav-item nk-link" href="#">
+                <span class="nk-text" style="--nk-size:44;--nk-weight:var(--nk-w-semibold);--nk-transform:uppercase"
+                  >CONTACTO</span
+                >
+                <span class="nk-nav-mark"></span>
+              </a>
+            </nav>
+            <span class="nk-divider" style="--nk-thickness: calc(var(--nk-u) * 4)"></span>
+          </header>
+
+          <!-- Hero -->
+          <section class="nk-hero" style="height: calc(var(--nk-u) * 700)">
+            <div class="nk-imgbox" style="height: calc(var(--nk-u) * 700); align-self: stretch">
+              <img src="art/cidade_papel.jpg" alt="" />
+            </div>
+            <span class="nk-hero-veil"></span>
+            <div class="nk-hero-body">
+              <span
+                class="nk-text"
+                style="--nk-size:60;--nk-color:var(--nk-accent);--nk-weight:var(--nk-w-bold);--nk-transform:uppercase"
+                >Metrópole</span
+              >
+              <span
+                class="nk-text"
+                style="--nk-size:150;--nk-color:#ffffff;--nk-font:var(--nk-heading-font);--nk-weight:var(--nk-heading-weight);--nk-transform:uppercase;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 2200)"
+                >A noite em que a NET caiu</span
+              >
+              <span
+                class="nk-text"
+                style="--nk-size:52;--nk-color:var(--nk-ink-soft);--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1900)"
+                >Sete horas sem rede. A cidade lembrou-se do que era o silêncio.</span
+              >
+            </div>
+          </section>
+
+          <!-- Section + Grid de Cards -->
+          <section class="nk-section">
+            <div class="nk-section-head">
+              <span class="nk-section-bar"></span>
+              <span
+                class="nk-text"
+                style="--nk-size:72;--nk-font:var(--nk-heading-font);--nk-weight:var(--nk-heading-weight);--nk-color:var(--nk-heading-color);--nk-transform:var(--nk-heading-transform)"
+                >Última hora</span
+              >
+            </div>
+            <div class="nk-grid" style="--nk-cols: 2">
+              <article class="nk-card" style="width: calc(var(--nk-u) * 1400)">
+                <div class="nk-imgbox" style="width: calc(var(--nk-u) * 1400); height: calc(var(--nk-u) * 560)">
+                  <img src="art/cidade_papel.jpg" alt="" />
+                </div>
+                <div class="nk-card-body">
+                  <span
+                    class="nk-text"
+                    style="--nk-size:34;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-accent)"
+                    >Bairro</span
+                  >
+                  <span
+                    class="nk-text"
+                    style="--nk-size:58;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-on-surface);--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1312)"
+                    >Kabuki acorda mais cedo</span
+                  >
+                  <span
+                    class="nk-text"
+                    style="--nk-size:42;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1312)"
+                    >O mercado abriu antes da polícia. Ninguém sabe porquê.</span
+                  >
+                </div>
+              </article>
+              <article class="nk-card" style="width: calc(var(--nk-u) * 1400)">
+                <div class="nk-imgbox" style="width: calc(var(--nk-u) * 1400); height: calc(var(--nk-u) * 560)">
+                  <img src="art/retrato.jpg" alt="" />
+                </div>
+                <div class="nk-card-body">
+                  <span
+                    class="nk-text"
+                    style="--nk-size:34;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-accent)"
+                    >Perfil</span
+                  >
+                  <span
+                    class="nk-text"
+                    style="--nk-size:58;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-on-surface);--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1312)"
+                    >Quem ganha com o silêncio</span
+                  >
+                  <span
+                    class="nk-text"
+                    style="--nk-size:42;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1312)"
+                    >Três empresas, uma janela de sete horas.</span
+                  >
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="nk-footer">
+            <span class="nk-divider" style="--nk-thickness: calc(var(--nk-u) * 3)"></span>
+            <div class="nk-footer-row">
+              <span class="nk-text" style="--nk-size:36;--nk-color:var(--nk-muted)">© 2077 Notícias</span>
+              <span class="nk-sp" style="flex-grow: 1"></span>
+              <a class="nk-text nk-link" href="#" style="--nk-size:36;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-link)">SOBRE</a>
+              <a class="nk-text nk-link" href="#" style="--nk-size:36;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-link)">CONTACTO</a>
+            </div>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

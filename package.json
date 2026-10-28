@@ -1,6 +1,6 @@
 {
   "name": "netkit-web",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Kit React e renderer standalone dos sites no padrão visual do mod NetSites (Cyberpunk 2077) — sistema visual fechado, pronto a injetar num site.",
   "license": "MIT",
@@ -28,7 +28,9 @@
     "list": "python3 scripts/netkit.py list",
     "test": "npm run test:node && npm run test:py",
     "test:node": "node --test",
-    "test:py": "python3 -m unittest discover -s tests -v"
+    "test:py": "python3 -m unittest discover -s tests -v",
+    "prints": "python3 scripts/prints.py",
+    "prints:check": "python3 scripts/prints.py --check"
   },
   "engines": {
     "node": ">=20"

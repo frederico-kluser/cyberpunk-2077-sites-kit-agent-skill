@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>print · catálogo de componentes</title>
+    <!-- Catálogo: cada bloco usa as mesmas classes que os componentes do netkit-web emitem.
+         A moldura (.gal, .pal-row, .type-line) é documentação, não kit. -->
+    <link rel="stylesheet" href="../../../assets/netkit-web/netkit-web.css" />
+    <link rel="stylesheet" href="_print.css" />
+  </head>
+  <body>
+    <div class="nk-site nk-theme-net">
+      <div class="gal">
+        <div class="gal-head">
+          <span class="gal-title">netkit-web</span>
+          <span class="gal-sub">catálogo · tema net · 25 componentes · 8 nós · 5 temas</span>
+        </div>
+
+        <!-- 1. paleta -->
+        <section class="gal-section">
+          <p class="doc-label">01 · Paleta fechada</p>
+          <p class="doc-note">Cada tema define fundo, texto, acento, acento 2, superfície e linha. Nenhum site escreve um hex novo.</p>
+          <div class="pal-row">
+            <div class="pal-name">net</div>
+            <div class="swatch" style="background: #0e0e17; color: #c0c8cf">#0e0e17</div>
+            <div class="swatch" style="background: #c0c8cf; color: #0e0e17">#c0c8cf</div>
+            <div class="swatch" style="background: #5ef6ff; color: #0e0e17">#5ef6ff</div>
+            <div class="swatch" style="background: #ff6159; color: #0e0e17">#ff6159</div>
+            <div class="swatch" style="background: #141b24; color: #c0c8cf">#141b24</div>
+            <div class="swatch" style="background: #2a3a46; color: #c0c8cf">#2a3a46</div>
+          </div>
+          <div class="pal-row">
+            <div class="pal-name">corpo</div>
+            <div class="swatch" style="background: #0a0a0a; color: #e9e9e9">#0a0a0a</div>
+            <div class="swatch" style="background: #e9e9e9; color: #0a0a0a">#e9e9e9</div>
+            <div class="swatch" style="background: #e0312b; color: #ffffff">#e0312b</div>
+            <div class="swatch" style="background: #ffffff; color: #0a0a0a">#ffffff</div>
+            <div class="swatch" style="background: #161616; color: #e9e9e9">#161616</div>
+            <div class="swatch" style="background: #3a1412; color: #e9e9e9">#3a1412</div>
+          </div>
+          <div class="pal-row">
+            <div class="pal-name">street</div>
+            <div class="swatch" style="background: #121212; color: #efe9d2">#121212</div>
+            <div class="swatch" style="background: #efe9d2; color: #121212">#efe9d2</div>
+            <div class="swatch" style="background: #f3e600; color: #121212">#f3e600</div>
+            <div class="swatch" style="background: #ff2a6d; color: #121212">#ff2a6d</div>
+            <div class="swatch" style="background: #1d1c18; color: #efe9d2">#1d1c18</div>
+            <div class="swatch" style="background: #3b3820; color: #efe9d2">#3b3820</div>
+          </div>
+          <div class="pal-row">
+            <div class="pal-name">tabloid</div>
+            <div class="swatch" style="background: #f2efe8; color: #1a1a1a">#f2efe8</div>
+            <div class="swatch" style="background: #1a1a1a; color: #f2efe8">#1a1a1a</div>
+            <div class="swatch" style="background: #c8102e; color: #ffffff">#c8102e</div>
+            <div class="swatch" style="background: #1d3c78; color: #ffffff">#1d3c78</div>
+            <div class="swatch" style="background: #ffffff; color: #1a1a1a">#ffffff</div>
+            <div class="swatch" style="background: #d6d0c4; color: #1a1a1a">#d6d0c4</div>
+          </div>
+          <div class="pal-row">
+            <div class="pal-name">neon</div>
+            <div class="swatch" style="background: #0d0614; color: #f5d7ef">#0d0614</div>
+            <div class="swatch" style="background: #f5d7ef; color: #0d0614">#f5d7ef</div>
+            <div class="swatch" style="background: #ff2fd0; color: #0d0614">#ff2fd0</div>
+            <div class="swatch" style="background: #5ef6ff; color: #0d0614">#5ef6ff</div>
+            <div class="swatch" style="background: #1a0d24; color: #f5d7ef">#1a0d24</div>
+            <div class="swatch" style="background: #3d1a46; color: #f5d7ef">#3d1a46</div>
+          </div>
+        </section>
+
+        <!-- 2. tipografia -->
+        <section class="gal-section">
+          <p class="doc-label">02 · Rampa de texto</p>
+          <p class="doc-note">20 tamanhos, de 32 a 150 ink. Corpo 46 · secção 72 · artigo 96 · header 110 · hero 150.</p>
+          <div class="type-line">
+            <span class="type-meta">150 · hero</span>
+            <span class="nk-text" style="--nk-size:150;--nk-font:var(--nk-heading-font);--nk-weight:var(--nk-heading-weight);--nk-color:var(--nk-heading-color);--nk-transform:var(--nk-heading-transform)">Night City</span>
+          </div>
+          <div class="type-line">
+            <span class="type-meta">110 · header</span>
+            <span class="nk-text" style="--nk-size:110;--nk-font:var(--nk-heading-font);--nk-weight:var(--nk-heading-weight);--nk-color:var(--nk-heading-color);--nk-transform:var(--nk-heading-transform)">Relatório anual</span>
+          </div>
+          <div class="type-line">
+            <span class="type-meta">72 · secção</span>
+            <span class="nk-text" style="--nk-size:72;--nk-font:var(--nk-heading-font);--nk-weight:var(--nk-heading-weight);--nk-color:var(--nk-heading-color)">Em destaque</span>
+          </div>
+          <div class="type-line">
+            <span class="type-meta">58 · cartão</span>
+            <span class="nk-text" style="--nk-size:58;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-on-surface)">Kabuki acorda mais cedo</span>
+          </div>
+          <div class="type-line">
+            <span class="type-meta">46 · corpo</span>
+            <span class="nk-text" style="--nk-size:46">O mercado abriu antes da polícia. Ninguém sabe porquê.</span>
+          </div>
+          <div class="type-line">
+            <span class="type-meta">38 · byline</span>
+            <span class="nk-text" style="--nk-size:38;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-muted)">Por V. · 12/03/2077</span>
+          </div>
+          <div class="type-line">
+            <span class="type-meta">32 · legenda</span>
+            <span class="nk-text" style="--nk-size:32;--nk-color:var(--nk-muted)">Fonte: NET · atualizado às 04h40</span>
+          </div>
+        </section>
+
+        <!-- 3. botões e etiquetas -->
+        <section class="gal-section">
+          <p class="doc-label">03 · Ações e etiquetas</p>
+          <p class="doc-note">Button é um link com caixa. Não há botão com estado, nem onClick.</p>
+          <div class="doc-row" style="align-items: center">
+            <a class="nk-btn nk-link" href="#" style="--nk-bg-color: var(--nk-accent)">
+              <span class="nk-text" style="--nk-size:46;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:var(--nk-on-accent)">Ler a matéria</span>
+            </a>
+            <a class="nk-btn nk-link" href="#" style="border: calc(var(--nk-u) * 4) solid var(--nk-accent)">
+              <span class="nk-text" style="--nk-size:46;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:var(--nk-accent)">Voltar</span>
+            </a>
+            <span class="nk-badge" style="--nk-bg-color: var(--nk-accent)"><span class="nk-text" style="--nk-size:32;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:var(--nk-on-accent)">Exclusivo</span></span>
+            <span class="nk-badge" style="--nk-bg-color: var(--nk-accent2)"><span class="nk-text" style="--nk-size:32;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:var(--nk-ink-dark)">Urgente</span></span>
+            <span class="nk-badge" style="--nk-bg-color: var(--nk-surface)"><span class="nk-text" style="--nk-size:32;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:var(--nk-muted)">NET</span></span>
+          </div>
+        </section>
+
+        <!-- 4. cartões -->
+        <section class="gal-section">
+          <p class="doc-label">04 · Cartões</p>
+          <p class="doc-note">Card (conteúdo) e ProductCard (preço em eddies) — a mesma grelha de 3 colunas em desktop.</p>
+          <div class="doc-row">
+            <article class="nk-card" style="width: calc(var(--nk-u) * 900)">
+              <div class="nk-imgbox" style="width: calc(var(--nk-u) * 900); height: calc(var(--nk-u) * 480)">
+                <img src="art/retrato.jpg" alt="" />
+              </div>
+              <div class="nk-card-body">
+                <span class="nk-text" style="--nk-size:34;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-accent)">Perfil</span>
+                <span class="nk-text" style="--nk-size:58;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-on-surface);--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 812)">Quem ganha com o silêncio</span>
+                <span class="nk-text" style="--nk-size:42;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 812)">Três empresas, uma janela de sete horas.</span>
+              </div>
+            </article>
+
+            <article class="nk-product" style="width: calc(var(--nk-u) * 640); border: calc(var(--nk-u) * 3) solid var(--nk-line)">
+              <div class="nk-imgbox" style="width: calc(var(--nk-u) * 640); height: calc(var(--nk-u) * 640)">
+                <img src="art/jaqueta.jpg" alt="" />
+              </div>
+              <div class="nk-product-body">
+                <span class="nk-text" style="--nk-size:50;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-on-surface);--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 560)">Jaqueta Samurai</span>
+                <div class="nk-row" style="--nk-gap: calc(var(--nk-u) * 18); align-items: center">
+                  <span class="nk-text" style="--nk-size:58;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-accent)">1 250</span>
+                  <span class="nk-text" style="--nk-size:36;--nk-transform:uppercase;--nk-color:var(--nk-muted)">eddies</span>
+                </div>
+                <a class="nk-btn nk-link" href="#" style="--nk-bg-color: var(--nk-accent)">
+                  <span class="nk-text" style="--nk-size:40;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:var(--nk-on-accent)">COMPRAR</span>
+                </a>
+              </div>
+            </article>
+
+            <div class="nk-quote" style="max-width: calc(var(--nk-u) * 1600)">
+              <span class="nk-quote-bar"></span>
+              <div class="nk-quote-body">
+                <span class="nk-text" style="--nk-size:60;--nk-weight:var(--nk-w-semibold);--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1600)">«O silêncio também é um serviço.»</span>
+                <span class="nk-text" style="--nk-size:38;--nk-transform:uppercase;--nk-color:var(--nk-muted)">— Rogue</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. dados -->
+        <section class="gal-section">
+          <p class="doc-label">05 · Dados e listas</p>
+          <p class="doc-note">Table (cabeçalho em acento, linhas alternadas) e BulletList (marcador quadrado de acento).</p>
+          <div class="doc-row">
+            <div class="nk-table-wrap" style="width: calc(var(--nk-u) * 1600)">
+              <div class="nk-table" style="border: calc(var(--nk-u) * 3) solid var(--nk-line)">
+                <div class="nk-tr" style="--nk-bg-color: var(--nk-surface)">
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 800); padding: calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:38;--nk-transform:uppercase;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-accent)">Peça</span></div>
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 400); padding: calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:38;--nk-transform:uppercase;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-accent)">Estado</span></div>
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 400); padding: calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:38;--nk-transform:uppercase;--nk-weight:var(--nk-w-bold);--nk-color:var(--nk-accent)">Preço</span></div>
+                </div>
+                <div class="nk-tr">
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 800); padding: calc(var(--nk-u) * 20) calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:42">Jaqueta Samurai</span></div>
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 400); padding: calc(var(--nk-u) * 20) calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:42">Usada</span></div>
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 400); padding: calc(var(--nk-u) * 20) calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:42">1 250 eddies</span></div>
+                </div>
+                <div class="nk-tr" style="--nk-bg-color: var(--nk-surface)">
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 800); padding: calc(var(--nk-u) * 20) calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:42">Chip de refrigeração</span></div>
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 400); padding: calc(var(--nk-u) * 20) calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:42">Novo</span></div>
+                  <div class="nk-td" style="width: calc(var(--nk-u) * 400); padding: calc(var(--nk-u) * 20) calc(var(--nk-u) * 22)"><span class="nk-text" style="--nk-size:42">340 eddies</span></div>
+                </div>
+              </div>
+            </div>
+            <ul class="nk-list" style="width: calc(var(--nk-u) * 1200)">
+              <li class="nk-list-item"><span class="nk-bullet"></span><span class="nk-text" style="--nk-size:46;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1200)">Primeira conversa: meia hora, sem custo.</span></li>
+              <li class="nk-list-item"><span class="nk-bullet"></span><span class="nk-text" style="--nk-size:46;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1200)">Proposta com desenho e orçamento por escrito.</span></li>
+              <li class="nk-list-item"><span class="nk-bullet"></span><span class="nk-text" style="--nk-size:46;--nk-wrap-mode:normal;max-width:calc(var(--nk-u) * 1200)">Montagem na véspera, desmontagem no fim da noite.</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 6. faixa e rodapé -->
+        <section class="gal-section">
+          <p class="doc-label">06 · Faixa e rodapé</p>
+          <aside class="nk-banner" style="height: calc(var(--nk-u) * 300)">
+            <div class="nk-imgbox" style="height: calc(var(--nk-u) * 300); align-self: stretch">
+              <img src="art/bar.jpg" alt="" />
+            </div>
+            <div class="nk-banner-body">
+              <span class="nk-text" style="--nk-size:80;--nk-weight:var(--nk-w-bold);--nk-transform:uppercase;--nk-color:#ffffff">Semana do cromo — 20% em tudo</span>
+            </div>
+          </aside>
+          <footer class="nk-footer">
+            <span class="nk-divider" style="--nk-thickness: calc(var(--nk-u) * 3)"></span>
+            <div class="nk-footer-row">
+              <span class="nk-text" style="--nk-size:36;--nk-color:var(--nk-muted)">© 2077 netkit-web · MIT</span>
+              <span class="nk-sp" style="flex-grow: 1"></span>
+              <a class="nk-text nk-link" href="#" style="--nk-size:36;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-link)">SKILL</a>
+              <a class="nk-text nk-link" href="#" style="--nk-size:36;--nk-transform:uppercase;--nk-weight:var(--nk-w-semibold);--nk-color:var(--nk-link)">REPOSITÓRIO</a>
+            </div>
+          </footer>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

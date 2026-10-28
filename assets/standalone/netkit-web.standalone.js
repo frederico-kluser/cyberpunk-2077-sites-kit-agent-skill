@@ -22,7 +22,7 @@
 (function (global) {
   "use strict"
 
-  var VERSION = "1.0.0"
+  var VERSION = "1.1.0"
   var THEME_NAMES = ["net", "corpo", "street", "tabloid", "neon"]
 
   /* ---- CSS de origem (sincronizado por scripts/netkit.py build) --------- */
@@ -245,7 +245,6 @@
 .nk-row,
 .nk-stack {
   background-color: var(--nk-bg-color, transparent);
-  border: var(--nk-border, 0 solid transparent);
 }
 .nk-col {
   display: flex;
@@ -297,7 +296,6 @@
   display: block;
   overflow: hidden;
   background-color: var(--nk-surface);
-  border: var(--nk-border, 0 solid transparent);
 }
 .nk-imgbox > img {
   display: block;
@@ -330,7 +328,6 @@
 .nk-rect {
   display: block;
   background-color: var(--nk-bg-color, transparent);
-  border: var(--nk-border, 0 solid transparent);
   flex: none;
 }
 .nk-sp {
@@ -371,6 +368,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: var(--nk-gap, calc(var(--nk-u) * 64));
 }
 .nk-nav-item {
   display: flex;
@@ -414,9 +412,14 @@
   grid-area: nk-stack-cell;
 }
 .nk-hero-veil {
+  position: absolute;
+  inset: 0;
   background-color: var(--nk-veil);
+  pointer-events: none;
 }
 .nk-hero-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: calc(var(--nk-u) * 36);
@@ -429,9 +432,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-start;
   padding: calc(var(--nk-u) * 26) calc(var(--nk-u) * 64);
   background-color: var(--nk-bg-color, transparent);
-  border: var(--nk-border, 0 solid transparent);
   flex: none;
 }
 
@@ -441,7 +444,6 @@
   display: flex;
   flex-direction: column;
   background-color: var(--nk-bg-color, var(--nk-surface));
-  border: var(--nk-border, 0 solid transparent);
   overflow: hidden;
   flex: none;
 }
@@ -548,7 +550,6 @@
 .nk-table {
   display: flex;
   flex-direction: column;
-  border: var(--nk-border, 0 solid transparent);
   min-width: 100%;
 }
 .nk-tr {
@@ -576,6 +577,8 @@
   grid-area: nk-stack-cell;
 }
 .nk-banner-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: calc(var(--nk-u) * 40);
@@ -784,7 +787,7 @@
     if (p.opacity !== undefined) st.opacity = p.opacity
     if (p.background) st["--nk-bg-color"] = p.background
     if (p.tint) st["--nk-tint"] = p.tint
-    if (p.border && p.border.color) st["--nk-border"] = u(p.border.width || 3) + " solid " + p.border.color
+    if (p.border && p.border.color) st.border = u(p.border.width || 3) + " solid " + p.border.color
     if (p.hover) {
       if (kind === "text" || kind === "tint") st["--nk-hover-color"] = p.hover
       else st["--nk-hover-bg"] = p.hover
@@ -942,6 +945,7 @@
     var site = doc.createElement("div")
     site.className = "nk-site nk-theme-" + theme
     site.setAttribute("data-nk-site", meta.id)
+    clear(host) // o host pode trazer o próprio JSON inline (<netsites>…</netsites>)
     host.appendChild(site)
 
     var ctx = { images: meta.images, meta: meta }
@@ -996,7 +1000,7 @@
 
   function autoMount() {
     if (!global.document || !global.document.querySelectorAll) return
-    var list = global.document.querySelectorAll("netsites[src], [data-netsite]")
+    var list = global.document.querySelectorAll("netsites, [data-netsite]")
     for (var i = 0; i < list.length; i++) {
       var el = list[i]
       if (el.getAttribute("data-nk-mounted")) continue
