@@ -1,0 +1,13 @@
+# CODEOWNERS — cyberpunk-2077-sites-kit-agent-skill
+#
+# Maintainer único: todas as alterações passam por PR (regra do ruleset
+# "Governança Principal Restrita") e o CI tem de estar verde. A revisão por
+# code owner está desligada porque o autor de um PR não se pode aprovar.
+# O último padrão que corresponde ganha; mantenha o mais específico em baixo.
+
+*       @frederico-kluser
+
+# O kit e o contrato visual: qualquer alteração aqui muda todos os sites.
+/assets/netkit-web/    @frederico-kluser
+/references/           @frederico-kluser
+/.github/              @frederico-kluser
