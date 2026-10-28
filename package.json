@@ -1,0 +1,36 @@
+{
+  "name": "netkit-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kit React e renderer standalone dos sites no padrão visual do mod NetSites (Cyberpunk 2077) — sistema visual fechado, pronto a injetar num site.",
+  "license": "MIT",
+  "author": "Frederico Guilherme Klüser de Oliveira",
+  "homepage": "https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill/issues"
+  },
+  "keywords": [
+    "agent-skill",
+    "cyberpunk-2077",
+    "netsites",
+    "react",
+    "design-system",
+    "frontend-kit"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "python3 scripts/netkit.py build",
+    "verify": "python3 scripts/netkit.py verify",
+    "list": "python3 scripts/netkit.py list",
+    "test": "npm run test:node && npm run test:py",
+    "test:node": "node --test",
+    "test:py": "python3 -m unittest discover -s tests -v"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

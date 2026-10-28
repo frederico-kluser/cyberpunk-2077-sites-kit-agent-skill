@@ -1,0 +1,18 @@
+# Dependências e artefactos
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+coverage/
+dist/
+build/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local
+.env
+*.local
+*.log

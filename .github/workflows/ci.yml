@@ -1,0 +1,138 @@
+# =============================================================================
+# CI — cyberpunk-2077-sites-kit-agent-skill
+#
+# Desenhado para ESTE repositório: sem dependências npm, sem `npm ci`, sem
+# package-lock. Os testes são o node:test (14) e o unittest do Python (30).
+#
+# O job AGREGADOR chama-se `build` porque é esse o `context` exigido pelo
+# ruleset (.github/rulesets/regras-main.json → required_status_checks).
+# Não renomear sem atualizar o ruleset.
+#
+# `uses:` fixadas por SHA com `bash scripts/oss-pin-actions.sh`.
+# =============================================================================
+
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (${{ matrix.node }} · py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20", "22"]
+        python: ["3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Testes do renderer e do kit React (node)
+        run: node --test
+
+      - name: Testes da CLI e do contrato visual (python)
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Injeção ponta a ponta (React e estático)
+        run: |
+          set -e
+          work="$(mktemp -d)"
+          mkdir -p "$work/site"
+          python3 scripts/netkit.py inject --target "$work/site" --flavor react --name Noticias --new-site
+          python3 scripts/netkit.py verify --target "$work/site"
+          python3 scripts/netkit.py check "$work/site/sites"
+          mkdir -p "$work/static"
+          printf '<!doctype html><html><head><title>x</title></head><body></body></html>' > "$work/static/index.html"
+          python3 scripts/netkit.py inject --target "$work/static" --flavor static --name Estatico
+          python3 scripts/netkit.py verify --target "$work/static"
+          python3 scripts/netkit.py check "$work/static"
+
+  contract:
+    name: contrato do kit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Kit íntegro (CSS embutida, versões, exports)
+        run: python3 scripts/netkit.py verify
+
+      - name: CSS de origem == CSS embutida no standalone
+        run: |
+          python3 scripts/netkit.py build
+          git diff --exit-code -- assets/standalone/netkit-web.standalone.js
+
+      - name: Nenhum segredo óbvio no kit
+        run: |
+          if grep -rInE '(ghp_|gho_|sk-[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16})' assets scripts references SKILL.md README.md; then
+            echo "::error::segredo em ficheiro do kit"; exit 1
+          fi
+
+  build:
+    name: build
+    needs: [test, contract]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Falha se alguma perna falhou
+        if: needs.test.result != 'success' || needs.contract.result != 'success'
+        run: |
+          echo "::error::test=${{ needs.test.result }} contract=${{ needs.contract.result }}"
+          exit 1
+
+      - name: Commits convencionais
+        run: |
+          python3 - <<'PY'
+          import re, subprocess, sys
+          header = re.compile(r'^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]*\))?!?: .+')
+          skip = re.compile(r'^(Merge |Revert "|Reapply "|fixup!|squash!)')
+          out = subprocess.run(['git', 'log', '--pretty=tformat:%s', '-n', '40', 'HEAD'],
+                               capture_output=True, text=True).stdout
+          bad = 0
+          for line in out.splitlines():
+              line = line.strip()
+              if not line or skip.match(line):
+                  continue
+              msg = re.sub(r'\s+\(#\d+\)$', '', line)
+              if not header.match(msg) or len(msg) > 72:
+                  print('ERRO: mensagem fora de Conventional Commits:', line)
+                  bad = 1
+              else:
+                  print('OK  :', line)
+          sys.exit(bad)
+          PY

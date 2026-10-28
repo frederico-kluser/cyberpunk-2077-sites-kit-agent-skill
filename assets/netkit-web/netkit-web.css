@@ -1,0 +1,651 @@
+/* ============================================================================
+   NETKIT/WEB — netkit-web.css
+   O SISTEMA VISUAL FECHADO dos sites no padrão do mod NetSites (Cyberpunk 2077).
+
+   REGRA ABSOLUTA: este ficheiro é a única fonte de cor, tipo, espaço e forma.
+   Ninguém (agente ou humano) escreve CSS num site feito com o kit: o site usa
+   só componentes do netkit-web e as props documentadas. Mexer aqui muda o
+   sistema todo — por isso o comando verify (scripts/netkit.py) compara o
+   sha256 do ficheiro com o manifesto do kit.
+
+   Unidades: «ink» do jogo. 1 unidade ink = --nk-u px (0,5 px por omissão).
+   A área de página do jogo é 3138 x 1293 ink; no browser vira o max-width de
+   .nk-page-inner. Tudo escala por --nk-u, inclusive o tipo.
+
+   Estrutura: 1) tokens  2) base  3) nós  4) blocos  5) responsivo  6) a11y
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ 1) TOKENS
+   Tudo o que é cor/letra/peso/espaçamento nasce aqui. O checker do kit lê
+   este bloco para saber quais são as cores legais (NETKIT:TOKENS).
+   ------------------------------------------------------------------------ */
+/* NETKIT:TOKENS:BEGIN */
+:root,
+.nk-theme-net {
+  /* paleta NET — ciano do navegador */
+  --nk-bg: #0e0e17;
+  --nk-text-color: #c0c8cf;
+  --nk-text-size: 46;
+  --nk-heading-color: #5ef6ff;
+  --nk-heading-font: var(--nk-font-raj);
+  --nk-heading-weight: var(--nk-w-bold);
+  --nk-heading-transform: uppercase;
+  --nk-muted: #7b8a96;
+  --nk-accent: #5ef6ff;
+  --nk-accent2: #ff6159;
+  --nk-surface: #141b24;
+  --nk-line: #2a3a46;
+  --nk-link: #5ef6ff;
+  --nk-link-hover: #28ffff;
+  --nk-on-accent: #0e0e17;
+  --nk-on-surface: #ffffff;
+  --nk-veil: #00000088;
+  --nk-veil-hover: #ffffff14;
+}
+.nk-theme-corpo {
+  /* corpo — vermelho e preto */
+  --nk-bg: #0a0a0a;
+  --nk-text-color: #e9e9e9;
+  --nk-text-size: 46;
+  --nk-heading-color: #ffffff;
+  --nk-heading-font: var(--nk-font-orbitron);
+  --nk-heading-weight: var(--nk-w-black);
+  --nk-heading-transform: uppercase;
+  --nk-muted: #8c8c8c;
+  --nk-accent: #e0312b;
+  --nk-accent2: #ffffff;
+  --nk-surface: #161616;
+  --nk-line: #3a1412;
+  --nk-link: #ff6159;
+  --nk-link-hover: #ffffff;
+  --nk-on-accent: #0e0e17;
+  --nk-on-surface: #ffffff;
+  --nk-veil: #00000088;
+  --nk-veil-hover: #ffffff14;
+}
+.nk-theme-street {
+  /* rua — amarelo Night City */
+  --nk-bg: #121212;
+  --nk-text-color: #efe9d2;
+  --nk-text-size: 46;
+  --nk-heading-color: #f3e600;
+  --nk-heading-font: var(--nk-font-raj);
+  --nk-heading-weight: var(--nk-w-bold);
+  --nk-heading-transform: uppercase;
+  --nk-muted: #9b9580;
+  --nk-accent: #f3e600;
+  --nk-accent2: #ff2a6d;
+  --nk-surface: #1d1c18;
+  --nk-line: #3b3820;
+  --nk-link: #f3e600;
+  --nk-link-hover: #ffffff;
+  --nk-on-accent: #0e0e17;
+  --nk-on-surface: #ffffff;
+  --nk-veil: #00000088;
+  --nk-veil-hover: #ffffff14;
+}
+.nk-theme-tabloid {
+  /* notícias — papel claro (o único tema claro) */
+  --nk-bg: #f2efe8;
+  --nk-text-color: #1a1a1a;
+  --nk-text-size: 46;
+  --nk-heading-color: #111111;
+  --nk-heading-font: var(--nk-font-raj);
+  --nk-heading-weight: var(--nk-w-bold);
+  --nk-heading-transform: none;
+  --nk-muted: #5b5b5b;
+  --nk-accent: #c8102e;
+  --nk-accent2: #1d3c78;
+  --nk-surface: #ffffff;
+  --nk-line: #d6d0c4;
+  --nk-link: #c8102e;
+  --nk-link-hover: #1d3c78;
+  --nk-on-accent: #0e0e17;
+  --nk-on-surface: #111111;
+  --nk-veil: #00000066;
+  --nk-veil-hover: #00000010;
+}
+.nk-theme-neon {
+  /* clube — rosa e ciano */
+  --nk-bg: #0d0614;
+  --nk-text-color: #f5d7ef;
+  --nk-text-size: 46;
+  --nk-heading-color: #ff2fd0;
+  --nk-heading-font: var(--nk-font-orbitron);
+  --nk-heading-weight: var(--nk-w-bold);
+  --nk-heading-transform: uppercase;
+  --nk-muted: #9d7fa0;
+  --nk-accent: #ff2fd0;
+  --nk-accent2: #5ef6ff;
+  --nk-surface: #1a0d24;
+  --nk-line: #3d1a46;
+  --nk-link: #5ef6ff;
+  --nk-link-hover: #ff2fd0;
+  --nk-on-accent: #0e0e17;
+  --nk-on-surface: #ffffff;
+  --nk-veil: #00000088;
+  --nk-veil-hover: #ffffff14;
+}
+:root,
+.nk-theme-net,
+.nk-theme-corpo,
+.nk-theme-street,
+.nk-theme-tabloid,
+.nk-theme-neon {
+  /* tinta neutra permitida (o kit e os sites usam só estas) */
+  --nk-ink-white: #ffffff;
+  --nk-ink-soft: #e6e6e6;
+  --nk-ink-dark: #111111;
+  --nk-ink-veil: #00000088;
+  --nk-ink-clear: #00000000;
+
+  /* famílias: as cinco do jogo, com queda para o que existe no browser */
+  --nk-font-raj: "Rajdhani", "Segoe UI", Roboto, Arial, sans-serif;
+  --nk-font-orbitron: "Orbitron", "Rajdhani", "Segoe UI", Arial, sans-serif;
+  --nk-font-blender: "Blender Pro", "Rajdhani", "Segoe UI", Arial, sans-serif;
+  --nk-font-industry: "Industry", "Rajdhani", "Segoe UI", Arial, sans-serif;
+  --nk-font-arial: Arial, Helvetica, sans-serif;
+  --nk-font-text: var(--nk-font-raj);
+
+  /* pesos do jogo */
+  --nk-w-light: 300;
+  --nk-w-regular: 400;
+  --nk-w-medium: 500;
+  --nk-w-semibold: 600;
+  --nk-w-bold: 700;
+  --nk-w-black: 900;
+
+  /* página: padding e gap do tema (página 21:9 do jogo) */
+  --nk-page-pad: calc(var(--nk-u) * 180) calc(var(--nk-u) * 200) calc(var(--nk-u) * 180) calc(var(--nk-u) * 160);
+  --nk-page-gap: calc(var(--nk-u) * 56);
+  --nk-page-w: calc(var(--nk-u) * 3138);
+}
+/* NETKIT:TOKENS:END */
+
+/* ------------------------------------------------------------------ 2) BASE */
+.nk-site {
+  /* 1 unidade ink = 0,5 px (desktop); desce nos ecrãs estreitos */
+  --nk-u: 0.5px;
+  width: 100%;
+  color: var(--nk-text-color);
+  font-family: var(--nk-font-text);
+  font-weight: var(--nk-w-medium);
+  line-height: 1.15;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.nk-site *,
+.nk-site *::before,
+.nk-site *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: 0;
+  text-decoration: none;
+  list-style: none;
+  background: none;
+}
+
+/* ------------------------------------------------------------------ 3) NÓS */
+/* página */
+.nk-page {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: clip;
+  background-color: var(--nk-bg-color, var(--nk-bg));
+}
+.nk-page-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nk-page-gap, calc(var(--nk-u) * 56));
+  width: 100%;
+  max-width: var(--nk-page-w);
+  padding: var(--nk-page-pad);
+}
+
+/* contentores */
+.nk-col,
+.nk-row,
+.nk-stack {
+  background-color: var(--nk-bg-color, transparent);
+  border: var(--nk-border, 0 solid transparent);
+}
+.nk-col {
+  display: flex;
+  flex-direction: column;
+  align-items: var(--nk-align, stretch);
+  justify-content: var(--nk-justify, flex-start);
+  gap: var(--nk-gap, 0px);
+  padding: var(--nk-pad, 0px);
+}
+.nk-row {
+  display: flex;
+  flex-direction: row;
+  align-items: var(--nk-valign, flex-start);
+  justify-content: var(--nk-justify, flex-start);
+  gap: var(--nk-gap, 0px);
+  padding: var(--nk-pad, 0px);
+}
+.nk-stack {
+  display: grid;
+  grid-template-areas: "nk-stack-cell";
+  align-items: var(--nk-valign, start);
+  justify-items: var(--nk-align, stretch);
+  gap: var(--nk-gap, 0px);
+  padding: var(--nk-pad, 0px);
+}
+.nk-stack > * {
+  grid-area: nk-stack-cell;
+}
+
+/* texto */
+.nk-text {
+  display: block;
+  min-width: 0;
+  color: var(--nk-color, var(--nk-text-color));
+  font-family: var(--nk-font, var(--nk-font-text));
+  font-size: calc(var(--nk-u) * var(--nk-size, var(--nk-text-size)));
+  font-weight: var(--nk-weight, var(--nk-w-medium));
+  line-height: var(--nk-lh, 1.15);
+  text-transform: var(--nk-transform, none);
+  text-align: var(--nk-align-text, left);
+  white-space: var(--nk-wrap-mode, nowrap);
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* imagem */
+.nk-imgbox {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--nk-surface);
+  border: var(--nk-border, 0 solid transparent);
+}
+.nk-imgbox > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--nk-fit, cover);
+}
+.nk-tint {
+  position: absolute;
+  inset: 0;
+  background-color: var(--nk-tint, transparent);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.nk-missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: calc(var(--nk-u) * 24);
+  border: calc(var(--nk-u) * 3) solid var(--nk-line);
+  color: var(--nk-muted);
+  font-size: calc(var(--nk-u) * 30);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* retângulo e espaço */
+.nk-rect {
+  display: block;
+  background-color: var(--nk-bg-color, transparent);
+  border: var(--nk-border, 0 solid transparent);
+  flex: none;
+}
+.nk-sp {
+  display: block;
+  flex: none;
+}
+
+/* ligações — a única interação do sistema */
+.nk-link {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+.nk-link:not([data-hover])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--nk-veil-hover);
+  opacity: 0;
+  pointer-events: none;
+}
+.nk-link:not([data-hover]):hover::after {
+  opacity: 1;
+}
+.nk-link[data-hover="bg"]:hover {
+  background-color: var(--nk-hover-bg);
+}
+.nk-link[data-hover="text"]:hover {
+  color: var(--nk-hover-color);
+}
+.nk-link[data-hover="tint"]:hover .nk-tint {
+  background-color: var(--nk-hover-color);
+}
+
+/* ------------------------------------------------------------------ 4) BLOCOS */
+/* cabeçalho e navegação */
+.nk-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nk-nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 10);
+  align-items: stretch;
+}
+.nk-nav-mark {
+  display: block;
+  height: calc(var(--nk-u) * 6);
+  background-color: var(--nk-mark, transparent);
+}
+.nk-header {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 40);
+  padding: 0 0 0 calc(var(--nk-u) * 24);
+  background-color: var(--nk-bg-color, transparent);
+}
+.nk-header-row {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--nk-u) * 48);
+}
+.nk-header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 6);
+  min-width: 0;
+}
+
+/* destaque */
+.nk-hero {
+  position: relative;
+  display: grid;
+  grid-template-areas: "nk-stack-cell";
+  align-items: end;
+  overflow: hidden;
+}
+.nk-hero > * {
+  grid-area: nk-stack-cell;
+}
+.nk-hero-veil {
+  background-color: var(--nk-veil);
+}
+.nk-hero-body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 36);
+  padding: calc(var(--nk-u) * 96) 0 calc(var(--nk-u) * 96) calc(var(--nk-u) * 96);
+  min-width: 0;
+}
+
+/* botão (é uma linha com fundo/borda e um texto) */
+.nk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nk-u) * 26) calc(var(--nk-u) * 64);
+  background-color: var(--nk-bg-color, transparent);
+  border: var(--nk-border, 0 solid transparent);
+  flex: none;
+}
+
+/* cartão, produto, secção, artigo */
+.nk-card,
+.nk-product {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--nk-bg-color, var(--nk-surface));
+  border: var(--nk-border, 0 solid transparent);
+  overflow: hidden;
+  flex: none;
+}
+.nk-card-body,
+.nk-product-body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 18);
+  padding: calc(var(--nk-u) * 44) calc(var(--nk-u) * 40) calc(var(--nk-u) * 44) calc(var(--nk-u) * 48);
+  min-width: 0;
+}
+.nk-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 40);
+  min-width: 0;
+}
+.nk-section-head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--nk-u) * 24);
+}
+.nk-section-bar {
+  display: block;
+  width: calc(var(--nk-u) * 14);
+  height: calc(var(--nk-u) * 64);
+  background-color: var(--nk-accent);
+  flex: none;
+}
+.nk-article {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 36);
+  min-width: 0;
+}
+
+/* grelha */
+.nk-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--nk-cols, 3), minmax(0, 1fr));
+  gap: var(--nk-gap, calc(var(--nk-u) * 48));
+  width: 100%;
+}
+
+/* divisória, etiqueta, citação, lista */
+.nk-divider {
+  display: block;
+  height: var(--nk-thickness, calc(var(--nk-u) * 4));
+  background-color: var(--nk-line);
+  flex: none;
+}
+.nk-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(var(--nk-u) * 8) calc(var(--nk-u) * 24);
+  background-color: var(--nk-bg-color, var(--nk-accent));
+  flex: none;
+  align-self: flex-start;
+}
+.nk-quote {
+  display: flex;
+  gap: calc(var(--nk-u) * 40);
+  align-items: stretch;
+  min-width: 0;
+}
+.nk-quote-bar {
+  display: block;
+  width: calc(var(--nk-u) * 10);
+  background-color: var(--nk-accent);
+  flex: none;
+}
+.nk-quote-body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 20);
+  min-width: 0;
+}
+.nk-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 22);
+  min-width: 0;
+}
+.nk-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--nk-u) * 28);
+  min-width: 0;
+}
+.nk-bullet {
+  display: block;
+  width: calc(var(--nk-u) * 18);
+  height: calc(var(--nk-u) * 18);
+  margin-top: calc(var(--nk-u) * 20);
+  background-color: var(--nk-accent);
+  flex: none;
+}
+
+/* tabela */
+.nk-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.nk-table {
+  display: flex;
+  flex-direction: column;
+  border: var(--nk-border, 0 solid transparent);
+  min-width: 100%;
+}
+.nk-tr {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--nk-bg-color, transparent);
+}
+.nk-td {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--nk-u) * 22) calc(var(--nk-u) * 22);
+  min-width: 0;
+}
+
+/* faixa (banner) */
+.nk-banner {
+  position: relative;
+  display: grid;
+  grid-template-areas: "nk-stack-cell";
+  align-items: center;
+  overflow: hidden;
+}
+.nk-banner > * {
+  grid-area: nk-stack-cell;
+}
+.nk-banner-body {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--nk-u) * 40);
+  padding: 0 calc(var(--nk-u) * 80);
+  min-width: 0;
+}
+
+/* rodapé */
+.nk-footer {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--nk-u) * 30);
+  padding: 0 0 0 calc(var(--nk-u) * 60);
+}
+.nk-footer-row {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--nk-u) * 56);
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------ 5) RESPONSIVO
+   O kit é que sabe o que fazer no telemóvel; o site não escreve media queries.
+   ------------------------------------------------------------------------ */
+@media (max-width: 1439px) {
+  .nk-site {
+    --nk-u: 0.46px;
+  }
+}
+@media (max-width: 1100px) {
+  .nk-site {
+    --nk-u: 0.42px;
+  }
+  .nk-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 860px) {
+  .nk-site {
+    --nk-u: 0.38px;
+  }
+  .nk-row[data-stack="1"],
+  .nk-header-row,
+  .nk-hero-body,
+  .nk-banner-body,
+  .nk-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nk-hero-body,
+  .nk-banner-body {
+    padding: calc(var(--nk-u) * 48);
+  }
+  .nk-header {
+    padding-left: 0;
+  }
+}
+@media (max-width: 620px) {
+  .nk-site {
+    --nk-u: 0.34px;
+  }
+  .nk-grid {
+    grid-template-columns: 1fr;
+  }
+  .nk-card,
+  .nk-product,
+  .nk-article,
+  .nk-imgbox {
+    width: 100% !important;
+    max-width: 100%;
+  }
+  .nk-btn {
+    align-self: stretch;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nk-site * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------ 6) A11Y */
+.nk-link:focus-visible,
+.nk-site [tabindex]:focus-visible {
+  outline: calc(var(--nk-u) * 4) solid var(--nk-accent);
+  outline-offset: calc(var(--nk-u) * 4);
+}
+.nk-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media print {
+  .nk-page {
+    background: #ffffff;
+  }
+}
