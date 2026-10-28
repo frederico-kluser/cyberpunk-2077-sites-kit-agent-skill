@@ -2,7 +2,7 @@
 # OpenSSF Scorecard — cyberpunk-2077-sites-kit-agent-skill (frederico-kluser/cyberpunk-2077-sites-kit-agent-skill)
 #
 # NOTA (para o agente): fixe as actions por SHA com `bash scripts/oss-pin-actions.sh`
-# antes do primeiro push (owner/repo@<PIN_SHA> # vX.Y.Z).
+# antes do primeiro push (todas as actions estão fixadas por SHA).
 #
 # Análise contínua da cadeia de fornecimento; resultados publicados em
 # https://securityscorecards.dev (publish_results: true) e carregados como
