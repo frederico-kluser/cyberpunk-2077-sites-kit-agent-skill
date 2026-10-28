@@ -29,6 +29,12 @@
 # =============================================================================
 set -uo pipefail
 
+# Windows/MSYS: sem isto o `ln -s` COPIA o diretório em vez de criar um symlink
+# (foi o que aconteceu na 1.ª instalação). nativestrict falha em vez de copiar.
+if [ -n "${MSYSTEM:-}" ]; then
+  export MSYS=winsymlinks:nativestrict
+fi
+
 SRC="${SKILL_SRC:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 SKILL_NAME="${SKILL_NAME:-$(basename "$SRC")}"
 BAK_ROOT="${HOME}/Agent-Skills/.link-backups"
@@ -112,8 +118,14 @@ for entry in "${ROOTS[@]}"; do
     printf '  LIGARIA %s → %s  [%s]\n' "$link" "$SRC" "$quem"; ALTERADOS=$((ALTERADOS+1)); continue
   fi
   mkdir -p "$root"
-  ln -s "$SRC" "$link" && printf '  LIGADO %s → %s  [%s]\n' "$link" "$SRC" "$quem"
-  ALTERADOS=$((ALTERADOS+1))
+  if ln -s "$SRC" "$link" && [ -L "$link" ]; then
+    printf '  LIGADO %s → %s  [%s]\n' "$link" "$SRC" "$quem"
+    ALTERADOS=$((ALTERADOS+1))
+  else
+    printf '  ERRO  %s não ficou um symlink — Solução: apague a cópia e crie o link com\n' "$link" >&2
+    printf '        PowerShell: New-Item -ItemType SymbolicLink -Path "%s" -Target "%s"\n' "$link" "$SRC" >&2
+    PROBLEMAS=$((PROBLEMAS+1))
+  fi
 done
 
 echo
