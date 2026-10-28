@@ -10,7 +10,7 @@ description: >-
   for criar, entregar ou revisar um site (landing, notícia, loja, portfólio, página de campanha) no visual
   do Cyberpunk 2077/NET, injetar o netkit-web num projeto React/Next/Vite/HTML, ou responder "faz um site
   no padrão do nosso mod de sites".
-version: 1.0.0
+version: 1.1.0
 license: MIT
 author: Frederico Guilherme Klüser de Oliveira
 homepage: https://github.com/frederico-kluser/cyberpunk-2077-sites-kit-agent-skill
@@ -45,10 +45,11 @@ padrão visual dos sites NET do Cyberpunk 2077 — o mesmo sistema do kit do est
 | **Kit React** `netkit-web` | [`assets/netkit-web/`](assets/netkit-web/) | componentes (`Site`, `Page`, `Header`, `Hero`, `Card`…) + a CSS com todos os tokens + tipos `.d.ts`; entra em Vite, Next, CRA e Astro **sem build do kit** |
 | **Renderer standalone** | [`assets/standalone/netkit-web.standalone.js`](assets/standalone/netkit-web.standalone.js) | desenha um `netsites-site/1` (JSON) no browser: uma tag `<script>` e o site aparece — sem React, sem npm, sem bundler |
 | **CLI** | [`scripts/netkit.py`](scripts/netkit.py) | `inject` · `check` · `verify` · `preview` · `new` · `list` · `build` |
+| **Prints** | [`docs/prints/`](docs/prints/) + [`scripts/prints.py`](scripts/prints.py) | capturas reais do kit (5 temas, 3 sites, catálogo, mobile, caminho JSON) e o gerador headless |
 | **Contrato visual** | [`references/`](references/) | o sistema (tokens, componentes, formato), o que é proibido, como injetar, exemplos e checklist |
 | **Registo global** | [`scripts/link-skill-global.sh`](scripts/link-skill-global.sh) | liga a skill a todos os roots de skills da máquina (`~/.dsh`, `~/.claude`, `~/.agents`, `~/.codex`, …) |
 
-A versão do kit é uma só: `1.0.0` no `package.json`, no `netkit-web.js`, no standalone e no manifesto.
+A versão do kit é uma só: `1.1.0` no `package.json`, no `netkit-web.js`, no standalone e no manifesto.
 `verify` falha se divergirem.
 
 ## Regra zero em prática
@@ -74,7 +75,7 @@ essa. Exemplo: «não há ícones no kit; uso `Badge` com a sigla ou `Rect` de a
 ## Antes de começar (sempre, 2 comandos)
 
 ```bash
-python3 scripts/netkit.py version        # 1.0.0
+python3 scripts/netkit.py version        # 1.1.0
 python3 scripts/netkit.py verify         # kit OK: CSS sincronizada, versões, exports
 ```
 
@@ -251,7 +252,8 @@ references/proibido.md       a lista do que NUNCA entra (e o que dizer quando fa
 references/injecao.md        injeção por stack (Vite, Next, Astro, HTML, WordPress)
 references/exemplos.md       três páginas completas (notícia, loja, portfólio)
 references/checklist.md      o que confirmar antes de entregar
-tests/                       44 testes (node: 14 · python: 30) — `npm test`
+tests/                       48 testes (node: 15 · python: 33) — `npm test`
+docs/prints/                 capturas reais do kit + `scripts/prints.py` (browser headless)
 ```
 
 ## Registo global (fora do projeto)

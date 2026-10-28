@@ -118,6 +118,7 @@ export function makeDom() {
     readyState: "complete",
     title: "",
     createElement: (tag) => new El(tag),
+    createTextNode: (text) => ({ nodeType: 3, textContent: String(text), parentNode: null }),
     getElementById(id) {
       let found = null
       walk(documentElement, (node) => {
@@ -126,7 +127,7 @@ export function makeDom() {
       return found
     },
     querySelectorAll(selector) {
-      if (selector !== "netsites[src], [data-netsite]") return []
+      if (selector !== "netsites, [data-netsite]") return []
       return findAll(documentElement, (node) => node.tagName === "NETSITES" && node.getAttribute("src"))
     },
     addEventListener(type, fn) {

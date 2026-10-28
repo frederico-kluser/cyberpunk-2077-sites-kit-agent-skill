@@ -91,6 +91,9 @@ jobs:
           python3 scripts/netkit.py build
           git diff --exit-code -- assets/standalone/netkit-web.standalone.js
 
+      - name: Capturas do kit presentes
+        run: python3 scripts/prints.py --check
+
       - name: Nenhum segredo óbvio no kit
         run: |
           if grep -rInE '(ghp_|gho_|sk-[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16})' assets scripts references SKILL.md README.md; then

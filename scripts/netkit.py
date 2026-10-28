@@ -28,7 +28,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 ROOT = Path(__file__).resolve().parent.parent
 KIT_DIR = ROOT / "assets" / "netkit-web"

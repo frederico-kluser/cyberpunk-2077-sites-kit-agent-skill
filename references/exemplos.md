@@ -7,6 +7,8 @@ imagens e o `domain`; **não** troque a estrutura por HTML nem acrescente estilo
 
 ## 1. Notícia — tema `tabloid` (jornal em papel)
 
+![Notícia no tema tabloid](../../docs/prints/02-noticia-tabloid.png)
+
 ```jsx
 import {
   Site, Page, Header, Article, Section, Grid, Card, Text, Divider, Badge, Quote, Footer,
@@ -101,6 +103,8 @@ export default function Noticias() {
 
 ## 2. Loja — tema `street`
 
+![Loja no tema street](../../docs/prints/03-loja-street.png)
+
 ```jsx
 import {
   Site, Page, Header, Banner, Section, Grid, ProductCard, Table, Text, Divider, Footer,
@@ -165,6 +169,8 @@ export default function Garagem() {
 ---
 
 ## 3. Portfólio — tema `neon`
+
+![Portfólio no tema neon](../../docs/prints/04-portfolio-neon.png)
 
 ```jsx
 import {

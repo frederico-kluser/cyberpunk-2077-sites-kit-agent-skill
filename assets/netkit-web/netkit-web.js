@@ -27,7 +27,7 @@ import {
   useState,
 } from "react"
 
-export const VERSION = "1.0.0"
+export const VERSION = "1.1.0"
 
 /** Temas fechados (as cores vivem no CSS; aqui só os nomes). */
 export const THEME_NAMES = ["net", "corpo", "street", "tabloid", "neon"]
@@ -80,7 +80,8 @@ function frame(p, hoverKind) {
   if (p.margin !== undefined) s.margin = space(p.margin)
   if (p.opacity !== undefined) s.opacity = p.opacity
   if (p.background) s["--nk-bg-color"] = p.background
-  if (p.border) s["--nk-border"] = `${u(p.border.width)} solid ${p.border.color}`
+  // borda é inline: uma CSS var herdaria para os filhos e desenhava caixas fantasma
+  if (p.border) s.border = `${u(p.border.width)} solid ${p.border.color}`
   if (p.hover) {
     if (hoverKind === "text" || hoverKind === "tint") s["--nk-hover-color"] = p.hover
     else s["--nk-hover-bg"] = p.hover

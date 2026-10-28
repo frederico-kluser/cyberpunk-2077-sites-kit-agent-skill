@@ -31,7 +31,7 @@ são revisão humana.
 ## Relatório de entrega (o que dizer ao dono)
 
 ```
-Site: <nome> · tema <tema> · kit netkit-web 1.0.0 (<react|estático>)
+Site: <nome> · tema <tema> · kit netkit-web 1.1.0 (<react|estático>)
 Páginas: <ids>
 Contrato visual: check 0 erros · verify OK
 Imagens: <n> (proveniência: <…>)

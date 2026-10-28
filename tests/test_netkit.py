@@ -343,6 +343,32 @@ class NewAndBuildTest(unittest.TestCase):
             self.assertTrue(data["ok"])
 
 
+class PrintsTest(unittest.TestCase):
+    """As capturas são parte da entrega: existem e as páginas de origem também."""
+
+    def setUp(self):
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location("prints", ROOT / "scripts" / "prints.py")
+        self.prints = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(self.prints)
+
+    def test_paginas_de_origem_existem(self):
+        for shot in self.prints.SHOTS:
+            self.assertTrue((ROOT / "docs" / "prints" / "src" / shot["page"]).exists(), shot["page"])
+
+    def test_capturas_existem(self):
+        missing = [s["name"] for s in self.prints.SHOTS if not (ROOT / "docs" / "prints" / f"{s['name']}.png").exists()]
+        self.assertEqual(missing, [], f"capturas em falta: {missing} — corra python3 scripts/prints.py --shots")
+
+    def test_lista(self):
+        code, out = quiet(self.prints.main, ["--list"])
+        self.assertEqual(code, 0)
+        self.assertIn("01-temas", out)
+        self.assertIn("og", out)
+
+
 class CliTest(unittest.TestCase):
     def test_version(self):
         code, out = quiet(netkit.main, ["version"])

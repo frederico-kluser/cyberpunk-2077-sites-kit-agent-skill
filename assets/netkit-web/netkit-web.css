@@ -216,7 +216,6 @@
 .nk-row,
 .nk-stack {
   background-color: var(--nk-bg-color, transparent);
-  border: var(--nk-border, 0 solid transparent);
 }
 .nk-col {
   display: flex;
@@ -268,7 +267,6 @@
   display: block;
   overflow: hidden;
   background-color: var(--nk-surface);
-  border: var(--nk-border, 0 solid transparent);
 }
 .nk-imgbox > img {
   display: block;
@@ -301,7 +299,6 @@
 .nk-rect {
   display: block;
   background-color: var(--nk-bg-color, transparent);
-  border: var(--nk-border, 0 solid transparent);
   flex: none;
 }
 .nk-sp {
@@ -342,6 +339,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: var(--nk-gap, calc(var(--nk-u) * 64));
 }
 .nk-nav-item {
   display: flex;
@@ -385,9 +383,14 @@
   grid-area: nk-stack-cell;
 }
 .nk-hero-veil {
+  position: absolute;
+  inset: 0;
   background-color: var(--nk-veil);
+  pointer-events: none;
 }
 .nk-hero-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: calc(var(--nk-u) * 36);
@@ -400,9 +403,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-start;
   padding: calc(var(--nk-u) * 26) calc(var(--nk-u) * 64);
   background-color: var(--nk-bg-color, transparent);
-  border: var(--nk-border, 0 solid transparent);
   flex: none;
 }
 
@@ -412,7 +415,6 @@
   display: flex;
   flex-direction: column;
   background-color: var(--nk-bg-color, var(--nk-surface));
-  border: var(--nk-border, 0 solid transparent);
   overflow: hidden;
   flex: none;
 }
@@ -519,7 +521,6 @@
 .nk-table {
   display: flex;
   flex-direction: column;
-  border: var(--nk-border, 0 solid transparent);
   min-width: 100%;
 }
 .nk-tr {
@@ -547,6 +548,8 @@
   grid-area: nk-stack-cell;
 }
 .nk-banner-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: calc(var(--nk-u) * 40);
