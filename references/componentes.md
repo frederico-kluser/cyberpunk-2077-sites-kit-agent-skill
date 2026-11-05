@@ -175,6 +175,8 @@ Véu preto de 53% automático; sem imagem, fundo `--nk-surface`.
 
 `label` e `to` obrigatórios; `variant` `solid` (omissão) ou `outline`; `size` (46); `color`, `textColor`.
 É um link com caixa. Não há botão com estado, nem evento de clique.
+Nas duas variantes o hover é o **véu do link** (`--nk-veil-hover`): o fundo de acento não muda, porque o texto
+é `--nk-on-accent` e um fundo de hover próprio mudaria a cor por baixo dele.
 
 ### `Card` — cartão de conteúdo
 
@@ -257,6 +259,7 @@ alternadas com `--nk-surface`, scroll horizontal no telemóvel.
 ```
 
 `text` obrigatório; `image` (sem imagem usa `--nk-accent2`), `to` (faixa clicável), `height` (300), `color`.
+Com `to`, o hover é o véu do link (a cor está na imagem/`Rect` de dentro, não no fundo da faixa).
 
 ### `Footer` — rodapé
 

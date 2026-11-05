@@ -60,6 +60,13 @@ class TokensTest(unittest.TestCase):
         embedded = netkit.extract_between(standalone, "/* NETKIT:CSS:BEGIN */", "/* NETKIT:CSS:END */")
         self.assertEqual(embedded.strip(), css.strip())
 
+    def test_hover_bg_nunca_sem_recurso(self):
+        # var indefinida em tempo de uso = declaração inválida: o background-color
+        # cai para transparente e o elemento desaparece no hover.
+        css = (ROOT / "assets/netkit-web/netkit-web.css").read_text(encoding="utf-8")
+        self.assertNotIn("var(--nk-hover-bg)", css)
+        self.assertIn("var(--nk-hover-bg, var(--nk-bg-color, transparent))", css)
+
 
 class VersionsTest(unittest.TestCase):
     def test_versoes_coerentes(self):
