@@ -238,6 +238,20 @@ test("react: Text, Column, Row e ligações", () => {
   assert.equal(row.props["data-stack"], "1")
   assert.equal(row.props["data-hover"], "bg")
   assert.equal(row.props.style["--nk-hover-bg"], "var(--nk-line)")
+
+  // data-hover="bg" só faz sentido com --nk-hover-bg definido: sem ele o fundo
+  // cai para transparente e o elemento desaparece no hover. Button e Banner não
+  // passam cor de hover, por isso usam o véu do link.
+  const solid = renderTree(kit.Button({ label: "Ver", to: "index" }))
+  assert.equal(solid.props["data-hover"], undefined, "botão: véu do CSS, nunca fundo de hover sem valor")
+  assert.equal(solid.props.style["--nk-hover-bg"], undefined)
+  assert.equal(solid.props.style["--nk-bg-color"], "var(--nk-accent)")
+
+  const outline = renderTree(kit.Button({ label: "Voltar", to: "index", variant: "outline" }))
+  assert.equal(outline.props["data-hover"], undefined)
+
+  const banner = renderTree(kit.Banner({ text: "Promo", to: "loja" }))
+  assert.equal(banner.props["data-hover"], undefined, "faixa clicável: véu do CSS")
 })
 
 test("react: Site escolhe a página, o tema e o idioma", () => {

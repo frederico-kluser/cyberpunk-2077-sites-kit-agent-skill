@@ -414,14 +414,21 @@ export function Hero({ image, title, text, cta, height = 820, align = "start" })
   )
 }
 
-/** Botão: caixa com fundo (solid) ou borda (outline) e texto. */
+/**
+ * Botão: caixa com fundo (solid) ou borda (outline) e texto.
+ *
+ * O hover é SEMPRE o véu do link (`--nk-veil-hover`), em ambas as variantes: o
+ * texto do botão solid é `--nk-on-accent`, por isso qualquer fundo de hover
+ * próprio muda a cor por baixo dele — e um `data-hover="bg"` sem `--nk-hover-bg`
+ * definido apagava o botão no hover (ver a regra .nk-link[data-hover="bg"]).
+ */
 export function Button({ label, to, variant = "solid", size = 46, color, textColor }) {
   const solid = variant !== "outline"
   const style = { "--nk-bg-color": solid ? color || "var(--nk-accent)" : "transparent" }
   if (!solid) style["--nk-border"] = `${u(4)} solid ${color || "var(--nk-accent)"}`
   return h(
     "a",
-    { className: "nk-btn nk-link", href: resolve(to), style, "data-hover": solid ? "bg" : undefined, "data-name": `button_${to}` },
+    { className: "nk-btn nk-link", href: resolve(to), style, "data-name": `button_${to}` },
     h(Text, { size, weight: "bold", upper: true, color: textColor || (solid ? "var(--nk-on-accent)" : color || "var(--nk-accent)") }, label)
   )
 }
@@ -596,7 +603,8 @@ export function Banner({ image, text, to, height = 300, color }) {
   ]
   const cls = cx("nk-banner", to && "nk-link")
   if (to) {
-    return h("a", { href: resolve(to), className: cls, style, "data-hover": "bg", "data-name": "banner" }, inner)
+    // o hover da faixa é o véu do link: a cor está na imagem/Rect de dentro, não no fundo
+    return h("a", { href: resolve(to), className: cls, style, "data-name": "banner" }, inner)
   }
   return h("aside", { className: cls, style, "data-name": "banner" }, inner)
 }

@@ -352,8 +352,12 @@
 .nk-link:not([data-hover]):hover::after {
   opacity: 1;
 }
+/* data-hover="bg" sem --nk-hover-bg não pode apagar o fundo: uma var indefinida
+   torna a declaração inválida em tempo de uso e o background-color cai para
+   transparente — o botão (fundo de acento, texto --nk-on-accent) desaparecia no
+   hover. A cadeia de recurso mantém sempre um fundo visível. */
 .nk-link[data-hover="bg"]:hover {
-  background-color: var(--nk-hover-bg);
+  background-color: var(--nk-hover-bg, var(--nk-bg-color, transparent));
 }
 .nk-link[data-hover="text"]:hover {
   color: var(--nk-hover-color);
